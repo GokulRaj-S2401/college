@@ -1,0 +1,511 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: ssbBold;
+    src: url('../fonts/ssb-bold.ttf');
+}
+@font-face {
+    font-family:ssbRegular ;
+    src: url('../fonts/ssb-regular.ttf');
+}
+@font-face {
+    font-family: ssbStyle;
+    src: url('../fonts/ssb-style.ttf');
+}
+header{
+    width: 100%;
+    display: block;
+    padding: 25px;
+    background: transparent;
+    position: fixed;
+    z-index: 2;
+}
+.brand .brandName { 
+    font-size: 20px;
+    font-family: ssbBold;
+    text-decoration: none;
+    color: #fff;
+}
+.brand{
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+}
+.icons ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.icons ul li{
+    list-style-type: none;
+}
+.icons ul li button{
+    font-size: 20px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: transparent;
+    color: #fff;
+}
+.brand .logo{
+    display: flex;
+    align-items: center;
+}
+.brand .logo button{
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    background: transparent;
+    align-items: center;
+    transition: .5s;
+}
+.icons ul li button:hover,
+.brand .logo button:hover,
+header nav ul li:hover
+
+{
+    background-color: rgba(0, 0, 0, .2);
+    cursor: pointer;
+}
+nav{
+    display: none;
+}
+.introSection{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(173.02deg, #293462 23.45%, #f307e7 108.35%);
+    padding: 100px 0px;
+    display: flex;
+    justify-content:space-around;
+    flex-direction: column;
+    align-items: center;
+}
+.introSection .botImg{
+    position: relative;
+    width: 100%;
+    height: 35vh;
+    padding: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.introSection .botImg img{
+    width: 100%;
+    position: relative;
+    z-index: 3;
+}
+.welcome{
+    padding: 0px 0px;
+}
+.welcome p{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7vh;
+    font-family:ssbStyle ;
+    color: #fff;
+}
+.btns{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+}
+.btns button{
+    font-size: 15px;
+    font-family: ssbRegular;
+    padding: 5px 30px;
+    display: flex;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #fff;
+    margin-left: 10px;
+}
+.btns button:nth-child(2){
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+}
+.des{
+    padding: 10px 0px;
+}
+.des p{
+    width: 100%;
+    padding: 10px 20px;
+    font-family: ssbRegular;
+    font-size: 2.2vh;
+    color: #fff;
+    text-align: justify;
+}
+.version{
+    width: 95%;
+    height: 40vh;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: ssbRegular;
+    font-size: 16px;
+    padding: 20px 0px;
+    position: absolute;
+    top:90vh;
+}
+.signin,.signup,.superAdmin,.asignin{
+    width:90%;
+    height: auto;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 200%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+    padding: 30px 20px;
+    border-radius: 5px;
+    transition: 2s;
+}
+.signin input,.signup input,.superAdmin input,.asignin input{
+    width:100%;
+    height: 35px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid rgb(199, 198, 198);
+    outline: none;
+    font-size: 16px;
+    font-family: ssbRegular;
+    padding-left: 10px;
+}
+.signin input:focus,.signup input:focus,.superAdmin input:focus , .asignin input:focus{
+    border: 1px solid #293462;
+}
+.signin button,.signup button,.superAdmin button,.asignin button{
+    background-color:#293462;
+    color:#fff;
+    font-size: 15px;
+    font-family: ssbRegular;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.indication{
+    font-family: ssbRegular;
+    margin-top: 5px;
+}
+.overlay{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .7);
+    left: 0;
+    top: 0;
+    z-index: 4;
+    position: fixed;
+    transition: .4s;
+    display: none;
+}
+.signin label,.signup label,.superAdmin label,.asignin label{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: ssbRegular;
+    font-size: 16px;
+}
+.signin label .err,.signup label .err,.superAdmin label .err,.asignin label .err{
+    font-size: 12px;
+    color:red;
+    margin-bottom: -15px;
+    display: none;
+}
+.signin h1,.signup h1, .superAdmin h1,.asignin h1{
+    font-family: ssbBold;
+    color:#293462
+}
+button.close{ 
+    position: absolute;
+    right: -20px;
+    top: -20px;  
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 15;
+    transition: .5s;
+}
+.close:hover{
+    background-color: #7487d4; 
+}
+.imageContainer{
+    display: none;
+}
+.botImg svg{
+    position: absolute;
+    width: 70%;
+    z-index: 1;
+}
+
+.botImg svg:nth-child(1){
+    animation: rotate1 2s infinite both;
+
+}
+.botImg svg:nth-child(2){
+    transform: rotate(40deg);
+    animation: rotate 4s infinite forwards;
+}
+@keyframes rotate1 {
+    from{
+        transform: rotate(360deg);
+    }
+    to{
+        transform: rotate(0deg);
+    }
+}
+@keyframes rotate {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@media only screen and (min-width:576px) and (max-width:768px) {
+    .introSection{
+        height: 100vh;
+        flex-direction: row;
+        overflow: hidden;
+    }
+    .introSection .botImg{
+        width: 50%;
+        padding: 10vw;
+    }
+    .content{
+        width: 50%;
+    }
+    .des p{
+        font-size: 2vw;
+    }
+    .version{
+        left: 2.5%;
+        bottom: 10vh;
+        padding: 5px;
+    }
+}
+@media  screen and (min-width:992px) {
+    .signin,.signup,.superAdmin,.asignin{
+        width:400px;
+    }
+    .botImg svg{
+        width:80%
+    }
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 35px;
+    }
+    .introSection{ 
+        padding:20px 50px;
+        box-sizing: border-box;
+        flex-direction: row-reverse;
+        box-sizing: border-box;
+        background: linear-gradient(169.08deg, #293462 1.64%, #AA26BF 125.68%);
+    }
+    .content{
+        width: 50%;
+        padding: 0px;
+        position: relative;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        z-index: 3;
+    }
+    .introSection .botImg{
+        width: 50%;
+        height: 50%;
+        padding: 14vw;
+        position: relative;
+        z-index: 3;
+        border-radius: 50%;
+    }
+    
+    .welcome p{
+        justify-content: flex-start;
+    }
+    .btns{
+        justify-content: flex-start;
+        margin: 0px;
+    }
+    .des p{
+        width: 90%;
+        padding: 0px;
+        font-size: 1.3vw;
+    }
+    .btns button{
+        margin: 0;
+    }
+    nav{
+        display: flex;
+    }
+    nav ul {
+        display: flex;
+        gap: 30px;
+    }
+    nav ul li{
+        list-style: none;
+        padding: 3px 20px;
+        border-radius: 50px;
+    }
+    nav ul li a{
+        text-decoration: none;
+        font-family: ssbRegular;
+        color:#fff;
+    }
+    .brand .logo button{
+        display: none;
+    }
+    .brand .brandName{
+        font-size: 25px;
+    }
+    .imageContainer img{
+        width: 100%;
+    }
+    .botImg{
+        position: relative;
+    }
+    .imageContainer{
+        width: 80%;
+        position: absolute;
+        left: 0;
+        top: 30%;
+        margin: 0 10% auto;
+        opacity: .2;
+        z-index: 1;
+        display: inline-flex;
+    }
+    .btns button{
+        border-radius:5px;
+        margin-right: 10px;
+    }
+    .btns button:hover{
+        cursor: pointer;
+    }
+}
+
+@media only screen and (min-width:769px) and (max-width:992px) {
+    .signin,.signup,.superAdmin,.asignin{
+        width: 400px;
+    }  
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 20px;
+    }
+    .introSection{ 
+        padding:20px 50px;
+        box-sizing: border-box;
+        flex-direction: row-reverse;
+        box-sizing: border-box;
+        background: linear-gradient(169.08deg, #293462 1.64%, #AA26BF 125.68%);
+    }
+    .content{
+        width: 50%;
+        padding: 0px;
+        position: relative;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        z-index: 3;
+    }
+    .introSection .botImg{
+        width: 50%;
+        height: 50%;
+        padding: 14vw;
+        position: relative;
+        z-index: 3;
+        border-radius: 50%;
+    }
+ 
+    .welcome p{
+        justify-content: flex-start;
+    }
+    .btns{
+        justify-content: flex-start;
+        margin: 0px;
+    }
+    .des p{
+        width: 90%;
+        padding: 0px;
+        font-size: 1.3vw;
+    }
+    .btns button{
+        margin: 0;
+    }
+    nav{
+        display: flex;
+    }
+    nav ul {
+        display: flex;
+        gap: 10px;
+    }
+    nav ul li{
+        list-style: none;
+        padding: 3px 20px;
+        border-radius: 50px;
+    }
+    nav ul li a{
+        text-decoration: none;
+        font-family: ssbRegular;
+        color:#fff;
+    }
+    .brand .logo button{
+        display: none;
+    }
+    .brand .brandName{
+        font-size: 25px;
+    }
+    .imageContainer img{
+        width: 100%;
+    }
+    .botImg{
+        position: relative;
+    }
+    .imageContainer{
+        width: 80%;
+        position: absolute;
+        left: 0;
+        top: 30%;
+        margin: 0 10% auto;
+        opacity: .2;
+        z-index: 1;
+        display: inline-flex;
+    }
+    .btns button{
+        border-radius:5px;
+        margin-right: 10px;
+    }
+    .btns button:hover{
+        cursor: pointer;
+    }
+}
