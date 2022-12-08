@@ -314,7 +314,7 @@ button.close{
         width:400px;
     }
     .botImg svg{
-        width:80%
+        width:75%
     }
     header {
         display: flex;
@@ -345,7 +345,6 @@ button.close{
         padding: 14vw;
         position: relative;
         z-index: 3;
-        border-radius: 50%;
     }
     
     .welcome p{
