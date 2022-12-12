@@ -1,3 +1,36 @@
+function close(){
+    document.getElementById('siuname').value = ""
+    document.getElementById('siuemail').value = ""
+    document.getElementById('siupassword').value = ""
+    document.getElementById('scpassword').value = ""
+    document.getElementById('asname').value = ""
+    document.getElementById('asemail').value = ""
+    document.getElementById('aspassword').value = ""
+    document.getElementById('ascpassword').value = ""
+    document.getElementById('assecret').value = ""
+    $('#signUpSubmission').text('Sign Up')
+    $('#superAdminAuth').text('Sign Up')
+    $('.assecreterr').css("display","none")
+
+    $('.already_exist').css("display","none")
+    $('.signin').css({
+        "left":"200%",
+    })
+    $('.signup').css({
+        "left":"200%",
+    })
+    $('.overlay').css({
+        "display":"none",
+    })
+    $('.superAdmin').css({
+        "left":"200%",
+    })
+    $('.asignin').css({
+        "left":"200%",
+        "top":"-150%",
+    })
+}
+
 //SignUp Validation
 
 var signup = {
@@ -6,10 +39,48 @@ var signup = {
     user_password:'',
 }
 
+$('.ok').click(function(){
+    $('.signConfirm').css("display","none")
+    $('.overlay').css({
+        "display":"none",
+    })
+})
+
+$('#signUpSubmission').click('click',function(){
+    $('#signUpSubmission').text('Processing...')
+    $.ajax({
+        url:'controller/SignUp.php',
+        method:'POST',
+        dataType:'json',
+        data:{signup:true,data:JSON.stringify({data:signup})},
+        success:function(data){
+            console.log(data.status)
+            if(data.status==100){
+                $('#signUpSubmission').text('Sign Up')
+                $('.already_exist').css("display","flex")
+            }
+            else if(data.status==200){
+                setTimeout(()=>{
+                    close()
+                    $('.signConfirm').css("display","flex")
+                    $('.confirmMsg').text("SignUp successfully ! Verification is processing, if it's verified, ssbaide is inform the status through the email until please wait.")
+                },2000)
+            }
+            else{
+                alert('server busy')
+                $('#signUpSubmission').text('Sign Up')
+            }
+        },
+        error:function(res){
+            console.log(res)
+        }
+    })
+})
 
 function SignUpFormValidation (){
     if(signup.user_email.length>0 && signup.user_password.length>0 && signup.user_name.length >0 ){
-        $('#signUpSubmission').css("disabled","false")
+        $('#signUpSubmission').removeAttr("disabled")
+        console.log(signup)
     }
     else{
         $('#signUpSubmission').prop("disabled","true")
@@ -68,7 +139,8 @@ $('#siupassword').focusout(function(){
     }
 })
 
-$('#scpassword').focusout(function(){
+$('#scpassword').keyup(function(){
+    console.log('hello');
     let usercPassword = $('#scpassword').val()
     console.log(usercPassword);
     if(usercPassword.length ==0  || $('#siupassword').val() != usercPassword ){
@@ -83,19 +155,43 @@ $('#scpassword').focusout(function(){
     }
 })
 
-
-
-
-
 //Signin Validation
 var signIn = {
     user_email:'',
     user_password:''
 }
 
+$("#signinSubmission").click(function(){
+    $("#signinSubmission").text("Processing...")
+    $.ajax({
+        url:'controller/signIn.php',
+        method:'POST',
+        dataType:'json',
+        data:{signin:true,data:JSON.stringify({data:signIn})},
+        success:function(res){
+            if(res.status==200){
+                setTimeout(()=>{
+                    location.reload()
+                },1000)
+            }
+            else if(res.status == 100 ){
+                $("#signinSubmission").text("Sign In")
+                $('.already_exist').css("display","flex")
+            }
+            else{ 
+                alert('Server Busy! Please contact admin')
+            }
+        },
+        error:function(res){
+            console.log(res);
+        }
+    })
+})
+
+
 function SignInFormValidation (){
     if(signIn.user_email.length>0 && signIn.user_password.length>0 ){
-        $('#signinSubmission').css("disabled","false")
+        $('#signinSubmission').removeAttr("disabled")
     }
     else{
         $('#signinSubmission').prop("disabled","true")
@@ -121,7 +217,7 @@ function SignInFormValidation (){
         SignInFormValidation()
     }
 })
-$('#password').focusout(function(){
+$('#password').keyup(function(){
     let userPassword = $('#password').val()
     if(userPassword.length ==0  || userPassword.length <6 || userPassword.indexOf(' ')>=0 ){
         signIn.user_password = ""
@@ -144,9 +240,40 @@ var adminSignIn = {
     user_password:'',
  }
 
+
+ $("#AsigninSubmission").click(function(){
+    $("#AsigninSubmission").text("Processing...")
+    $.ajax({
+        url:'controller/adminSignIn.php',
+        method:'POST',
+        dataType:'json',
+        data:{signin:true,data:JSON.stringify({data:adminSignIn})},
+        success:function(res){
+            if(res.status==200){
+                setTimeout(()=>{
+                    location.reload()
+                },1000)
+            }
+            else if(res.status == 100 ){
+                $("#AsigninSubmission").text("Sign In")
+                $('.already_exist').css("display","flex")
+            }
+            else{ 
+                alert('Server Busy! Please contact admin')
+            }
+        },
+        error:function(res){
+            console.log(res);
+        }
+    })
+})
+
+
  function adminSignInFormValidation (){
-    if(adminSignIn.user_email.length>0 && adminSignUp.user_password.length>0 ){
-        $('#AsigninSubmission').css("disabled","false")
+    console.log(adminSignIn);
+    if(adminSignIn.user_email.length>0 && adminSignIn.user_password.length>0 ){
+        console.log('enter');
+        $('#AsigninSubmission').removeAttr("disabled")
     }
     else{
         $('#AsigninSubmission').prop("disabled","true")
@@ -163,15 +290,16 @@ var adminSignIn = {
     if(userEmail.match(exp) == null  || userEmail.length ==0 ){
         adminSignIn.user_email = ""
         $('.asiemailerr').css("display","flex") 
-        adminSignUpFormValidation()  
+        adminSignInFormValidation()  
     }
     else{
         $('.asiemailerr').css("display","none")
         adminSignIn.user_email = userEmail
-        adminSignUpFormValidation()
+        adminSignInFormValidation()
     }
 })
-$('#apassword').focusout(function(){
+$('#apassword').keyup(function(){
+    console.log('adf');
     let userPassword = $('#apassword').val()
     if(userPassword.length ==0  || userPassword.length <6 || userPassword.indexOf(' ')>=0 ){
         adminSignIn.user_password = ""
@@ -195,12 +323,40 @@ var adminSignUp = {
     secret_key:''
  }
 
-
+$('#superAdminAuth').click(function(){
+    $('#superAdminAuth').text("Processing...")
+    $.ajax({
+        url:'controller/AdminCreate.php',
+        method:'POST',
+        dataType:'json',
+        data:{signup:true,data:JSON.stringify({data:adminSignUp})},
+        success:function(res){
+            console.log(res);
+            if(res.status ==200){
+                $('.assecreterr').css("display","none")
+                setTimeout(()=>{
+                   close()
+                },2000)
+            }
+            else if(res.status == 300){
+                $('.assecreterr').css("display","flex")
+                $('#superAdminAuth').text("Sign Up")
+            }
+            else if(res.status == 100){
+                $('#superAdminAuth').text("Sign Up")
+                $('.already_exist').css("display","flex")
+            }
+        },
+        error:function(err){
+            alert('server busy! please contact admin')
+        }
+    })
+})
  
 
  function adminSignUpFormValidation (){
-    if(adminSignUp.user_name.length>0 && adminSignUp.user_email.length>0 && adminSignUp.user_password.length>0 && adminSignUp.secret_key >0  ){
-        $('#superAdminAuth').css("disabled","false")
+    if(adminSignUp.user_name.length>0 && adminSignUp.user_email.length>0 && adminSignUp.user_password.length>0 && adminSignUp.secret_key.length >0  ){
+        $('#superAdminAuth').removeAttr("disabled")
     }
     else{
         $('#superAdminAuth').prop("disabled","true")
@@ -269,8 +425,9 @@ $('#ascpassword').focusout(function(){
     }
 })
 
-$('#assecret').focusout(function(){
+$('#assecret').keyup(function(){
     let secretKey = $('#assecret').val()
+    console.log('afd')
     if(secretKey.length ==0 ){
         adminSignUp.secret_key = ""
         $('.assecreterr').css("display","flex") 
@@ -286,24 +443,12 @@ $('#assecret').focusout(function(){
 //landing page design works
 if( $(window).innerWidth() < 756 ){
     $('.icons').remove().insertAfter('.logo')
+
 }
+
+
 $('.close').click(function(){
-    $('.signin').css({
-        "left":"200%",
-    })
-    $('.signup').css({
-        "left":"200%",
-    })
-    $('.overlay').css({
-        "display":"none",
-    })
-    $('.superAdmin').css({
-        "left":"200%",
-    })
-    $('.asignin').css({
-        "left":"200%",
-        "top":"-150%",
-    })
+    close()
 });
                 
 $('.signIn').click(function(){

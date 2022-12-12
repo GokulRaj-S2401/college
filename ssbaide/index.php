@@ -1,3 +1,11 @@
+<?php 
+
+if(isset($_COOKIE['user']) || isset($_COOKIE['admin']) ){
+    header("Location:views/User.php");
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,6 +86,7 @@
             <input type="text" id="email">
             <label for="password">Password <span class="err passerr"> Password must be 6 character or more </span> </label>
             <input type="password" id="password" >
+            <p class="already_exist" style="color: red;" > User doesn't exist </p>
             <button id="signinSubmission" >Sign In</button> 
         </div>
     </div>
@@ -93,6 +102,7 @@
             <input type="text" id="aemail">
             <label for="apassword">Password <span class="err asipasserr ">Password must be 6 character</span> </label>
             <input type="password" id="apassword" >
+            <p class="already_exist" style="color: red;" > User doesn't exist </p>
             <button id="AsigninSubmission" >Sign In</button> 
         </div>
     </div>
@@ -112,8 +122,12 @@
             <input type="password" tabindex="3" id="siupassword" >
             <label for="scpassword">Confirm Password <span class="err cpassErr ">Password must be same</span> </label>
             <input type="password" tabindex="4" id="scpassword" >
-            <button tabindex="5" id="signUpSubmission" >Sign In</button> 
+            <button tabindex="5" id="signUpSubmission" >Sign Up</button> 
+            <p class="already_exist" style="color: red;" > Email already exist </p>
         </div>
+    </div>
+    <div class="signConfirm">
+        <p> <span class="confirmMsg" >  </span> <a class="ok" href="#">Ok</a> </p>
     </div>
     <div class="superAdmin">
         <div class="box">
@@ -133,6 +147,7 @@
             <input type="password" id="ascpassword" >
             <label for="assecret">Secret Key <span class="assecreterr err" > Invalid Secret Key </span> </label>
             <input type="password" id="assecret" >
+            <p class="already_exist" style="color: red;" > Email already exist </p>
             <div class="flexBtn">
                 <button id="superAdminAuth" >Sign Up</button> 
                 <p class="indication" > Already have an account <a id="asign" href="#">Sign In</a> </p>

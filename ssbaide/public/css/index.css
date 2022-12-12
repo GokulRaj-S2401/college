@@ -168,6 +168,11 @@ nav{
     position: absolute;
     top:90vh;
 }
+.already_exist{
+    font-family: ssbRegular;
+    font-size: 14px;
+    display: none;
+}
 .signin,.signup,.superAdmin,.asignin{
     width:90%;
     height: auto;
@@ -180,6 +185,34 @@ nav{
     padding: 30px 20px;
     border-radius: 5px;
     transition: 2s;
+}
+.signConfirm{
+    width: 60%;
+    top: 90%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-90%);
+    font-family: ssbRegular;
+    font-size: 16px;
+    padding: 10px 20px;
+    z-index: 5;
+    background-color: #fff;
+    border-radius: 5px;
+    display: none;
+    justify-content: space-between;
+
+}
+.ok{
+    padding: 2px 20px;
+    background-color: #2d48b4;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 2px;
+    margin-left: 20px;
+    transition: 1s;
+}
+.ok:hover{
+    background-color: #032091;
 }
 .signin input,.signup input,.superAdmin input,.asignin input{
     width:100%;
