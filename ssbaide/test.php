@@ -13,7 +13,7 @@ $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth =true;
 $mail->Username = 'mca21.gogul@petengg.ac.in';
-$mail->Password = 'yqynnxrlhtmmnany';
+$mail->Password = '';
 $mail->SMTPSecure = 'ssl';
 $mail->Port = 465;
 
