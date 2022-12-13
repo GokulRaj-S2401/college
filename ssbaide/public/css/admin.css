@@ -18,6 +18,9 @@ section{
     display: flex;
     padding: 10px;
 }
+.active{
+    background: rgba(0, 0, 0, .2);
+}
 .sideNav{
     width: 160px;
     height: 100%;
@@ -172,4 +175,16 @@ h1.shrink{
     to{
         width: 160px;
     }
+}
+.tableContainer{
+    width:80%;
+    margin: 10px 5% auto;
+    font-family: ssbRegular;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+table{
+    width: 100%;
+    text-align: left;
 }

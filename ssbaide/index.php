@@ -1,10 +1,7 @@
 <?php 
-
 if(isset($_COOKIE['user']) || isset($_COOKIE['admin']) ){
     header("Location:views/User.php");
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
